@@ -65,7 +65,9 @@ export const loginController = async (req, res) => {
         }
 
         generateTokenandCookie(user._id, res)
-        res.status(200).json(`User logged in successfully`)
+        res.status(200).json({
+            user
+        })
         
     } catch (error) {
         console.log(error.message);
