@@ -38,7 +38,13 @@ export const signUpController = async (req, res, next) => {
             generateTokenandCookie(newUser._id, res)
             
             await newUser.save();
-            res.status(200).json(`User created successfully`)
+            // res.status(200).json('User created successfully')
+            res.status(200).json({
+                _id: newUser._id,
+				fullName: newUser.fullName,
+				username: newUser.username,
+				profilePic: newUser.profilePic,
+            })
         }
         else{
             res.status(400).json({error: 'Invalid user data'})
@@ -66,7 +72,10 @@ export const loginController = async (req, res) => {
 
         generateTokenandCookie(user._id, res)
         res.status(200).json({
-            user
+            _id: user._id,
+			fullName: user.fullName,
+			username: user.username,
+			profilePic: user.profilePic,
         })
         
     } catch (error) {
